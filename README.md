@@ -1,272 +1,234 @@
-# 🚢 Cruise Ship Payroll Analytics — Enterprise Database Case Study
+# 🏛️ Louisville Metro Payroll Analytics - Public Sector
 
-This project replicates the entire **payroll & analytics workflow** used by cruise company operations teams — built from scratch using **realistic business data and enterprise SQL architecture**.
+> _**"Government salaries are public: understanding them is the next step for Data analytics expertise."**_
 
-The motivation is simple:
+This project works the **complete payroll analytics workflow** using Louisville Metro's publicly available employee salary data, transforming raw CSV into enterprise-grade analytics.
 
-> _"Excel files work better with SQL, databases, and business analytics!"_
+**The motivation is straightforward:**
 
----
-
-## 📚 Data Foundation — Industry-Grounded Simulation
-
-All parameters are based on realistic cruise industry benchmarks and operational standards:
-
-| Metric | Value | Rationale |
-|--------|-------|-----------|
-| **Employee Base** | 30,000–40,000 | Typical mega-ship fleet (10–15 vessels) |
-| **Contract Types** | Permanent, Seasonal, Temporary | Real cruise industry staffing model |
-| **Monthly Payroll Range** | €8M–€12M | Industry standard for cruise operators |
-| **Departments** | 8 (Bridge, Engineering, Hospitality, etc.) | Actual cruise ship organizational structure |
-| **Shift Model** | 24/7 rotating shifts | Operational necessity at sea |
-| **Deduction Types** | 8 (Taxes, Insurance, Benefits, etc.) | EU/International maritime regulations |
-| **Database Growth Rate** | 50M+ records/year | Real-world data volume for analytics |
-
-> 🔍 **These are not assumptions, they are operational realities.**  
-> The database is architected to handle enterprise-scale payroll processing with complete audit compliance.
+> *Real data, real questions and real answers.*
 
 ---
 
-## 📊 Dashboard — Live, Interactive Analytics Ready
+## 📊 What this is
 
-I'm building a **fully interactive dashboard** in **Power BI** that visualizes all critical payroll KPIs:
+Louisville Metro publishes **6,000+ employee records annually** across police, fire, parks, HR, and 15+ departments. Each record contains:
 
-- **Monthly Payroll Trends** — GrossSalary, Deductions, NetSalary by department
-- **Employee Segmentation** — By contract type, department, tenure
-- **Overtime Analysis** — Hours worked, cost impact, departmental patterns
-- **Deduction Breakdown** — Tax, insurance, contributions by employee tier
-- **Headcount Analytics** — Active employees, turnover, retention rates
+- Annual salary (salary budget vs. actual earnings)
+- Overtime (who's working the extra shifts?)
+- Allowances (uniforms, call-outs, special pay)
+- Total YTD compensation
 
-🔗 **[View the Live Power BI Dashboard →](https://public.tableau.com/)**
-_(Link available upon completion)_
+**This is NOT simulated data.** This is what taxpayers fund.
 
 ---
 
-## 🏗️ Schema Overview
+## 🎯 The Problem We're Solving
 
-The database is built on **18 interconnected tables** organized in 5 layers:
+**Raw question:** "How much does Louisville Metro pay its workforce?"
 
-| Layer | Tables | Purpose |
-|-------|--------|---------|
-| **Catalog (Dimensions)** | Departments, Positions, ShiftTypes, ContractTypes, DeductionTypes, Holidays | Reference data & business rules |
-| **Core Entities** | Employees, EmployeeContracts, EmployeePositions, EmployeeDeductions | Employee master data & history |
-| **Operational** | AttendanceRecords, ShiftAssignments, WorkDetails | Daily operations & time tracking |
-| **Payroll** | MonthlyPayroll, PayrollDeductions, PayslipDetails | Salary calculations & breakdowns |
-| **Audit** | EventLog, AuditTrail, SystemLogs | Compliance & data governance |
+**Data questions we can answer with SQL:**
 
-### 📊 Core Metrics Generated
+1. **Salary Transparency** — Which departments have the highest average salary? Who's in top 10%?
+2. **Overtime Analysis** — Who's working overtime? Is it systematic or emergency-driven?
+3. **Compensation Equity** — Same job title, different pay? Let's find it.
+4. **Budget Impact** — If overtime increases 10%, what's the cost to taxpayers?
+5. **Departmental Trends** — Are hiring practices changing YoY?
 
-| Metric | Example | Business Use |
-|--------|---------|--------------|
-| **Total Database Volume** | 50M+ records | Handles 1 year of payroll history |
-| **Employees Processed Monthly** | 35,000 | Full fleet payroll automation |
-| **Payroll Lines (Deductions)** | 250,000+/month | Regulatory compliance reporting |
-| **Audit Trail Entries** | 100,000+/month | Complete transaction history |
-| **Average Query Response** | <2 seconds | Real-time analytics performance |
+**Why this matters:** Public sector payroll is often misunderstood. SQL lets us ask precise questions and get defensible answers.
 
 ---
 
-## 🎯 Analytical Insights — Actionable Business Intelligence
+## 📈 Data Foundation
 
-> 💡 **"20% of employees account for 65% of total payroll spend."**  
-> → *Recommendation: Develop strategic compensation planning for senior roles; implement tiered benefits structure.*
+**Source:** [Louisville Metro HR Salary Data (data.gov)](https://catalog.data.gov/dataset/louisville-metro-ky-employee-salary-data-6cc9e)
 
-> 💡 **"Seasonal workers show 45% higher turnover in month 3 of contract."**  
-> → *Recommendation: Enhanced engagement bonuses in Month 2-3; early renewal incentives for high performers.*
+**Data Coverage:**
+- **Time Range:** 2020–2024 (5 years of historical data)
+- **Records:** +6,000 employees per year
+- **Total Volume:** 40,000+ salary records available
+- **Updates:** Annually (new fiscal year data released mid-year)
 
-> 💡 **"Overtime costs increased 23% YoY; concentrated in Engineering and Hospitality."**  
-> → *Recommendation: Staffing optimization analysis; consider shift restructuring in high-impact departments.*
+**Departments Included:**
+Police, Fire & Rescue, Parks & Recreation, Public Works, Human Resources, Finance, Planning & Design, Environmental Protection & Management, and 8+ others.
 
-> 💡 **"Deduction accuracy: 99.8% compliance with EU maritime labor standards."**  
-> → *Validation: Audit-ready payroll system with zero regulatory gaps.*
+**Key Metrics Per Employee:**
+| Metric | Range | Interpretation |
+|--------|-------|-----------------|
+| Annual Rate | $25,000–$180,000 | Contracted annual salary |
+| Regular Rate | $20,000–$140,000 | Actual base earnings (may be less if leave taken) |
+| Overtime Rate | $0–$50,000 | Extra compensation for hours worked beyond normal |
+| Allowances | $0–$15,000 | Uniform stipends, hazard pay, call-out bonuses |
+| YTD Total | $25,000–$200,000 | Total gross compensation for year |
+
+**Example:** A police officer with Annual Rate $60,000 might have:
+- Regular Rate: $58,000 (few days of leave)
+- Overtime Rate: $12,000 (mandatory 24-hour shifts)
+- Allowances: $2,500 (uniform maintenance, weapon certification)
+- **YTD Total: $72,500** (actual cost to taxpayers)
 
 ---
 
 ## 🗂️ Project Structure
 
 ```
-cruise-payroll-analytics/
+louisville-payroll-analytics/
 │
-├── database/
-│   ├── 01-CATALOG-TABLES.sql
-│   ├── 02-CORE-TABLES.sql
-│   ├── 03-PAYROLL-TABLES.sql
-│   ├── 04-AUDIT-TABLES.sql
-│   ├── 05-CATALOG-DATA.sql
-│   └── 06-INDEXES.sql
+├── data/
+│   ├── raw/
+│   │   └── Louisville_Metro_KY_-_Employee_Salary_Data.csv            # Original Dataset from  US data.gov - Lousiville Metro Employee Salaries
+│   └── processed/
+│   │   └── salary_data_cleaned.csv                                   # Cleaned dataset to be queried within PostgreSQL
 │
-├── procedures/
-│   ├── InsertEmployee.sql
-│   ├── RecordAttendance.sql
-│   ├── CalculateMonthlyPayroll.sql
-│   ├── ApplyDeductions.sql
-│   ├── DeleteEmployee.sql
-│   ├── GetEmployeePayslip.sql
-│   └── CalculateMonthlyPayrollBatch.sql
+├── schema/
+│   └── a_schema_creation.sql           # Create all tables with variables (columns) and rows
 │
-├── triggers/
-│   ├── Employees_Audit.sql
-│   ├── AttendanceRecords_Audit.sql
-│   └── MonthlyPayroll_Audit.sql
+├── queries/
+│   ├── b_salary_distribution.sql       # 1st Query: how the salary expenses are distributed into the several departments?
+│   ├── c_top_earners.sql               # 2nd Query: which are the top earners?
+│   ├── d_overtime_analysis.sql         # 3rd Query: how many hours are overtime?
+│   ├── e_job_title_variance.sql        # 4th Query: how's volatile the salary for the same job title?
+│   ├── f_yearly_trends.sql             # 5th Query: what's the salary and overtime trend?
+│   ├── g_budget_impact.sql             # 6th Query: which are the most expensive departments?
+│   ├── h_salary_inequality.sql         # 7th Query: how about the variance between salaries?
+│   ├── i_department_ranking.sql        # 8th Query: who are the "Big Spenders"?
+│   ├── j_allowances.sql                # 9th Query: which incentives per departments?
+│   └── k_salary_growth.sql             # 10th Query: how's increasing the salaries? 
 │
-├── analytics/
-│   ├── PayrollSummary.sql
-│   ├── AttendanceSummary.sql
-│   ├── DeductionsSummary.sql
-│   └── power_bi_queries.sql
-│
-├── simulation/
-│   ├── simulation-catalog.xml
-│   ├── simulation-operations.xml
-│   └── run-simulation.sql
-│
-├── reports/
-│   ├── monthly_payroll_summary.csv
-│   ├── employee_headcount_report.csv
-│   ├── deduction_analysis.csv
-│   └── overtime_trends.csv
+├── dashboard/                          # Queries output
+│   ├── 1.Salary Distribution.csv
+│   ├── 2.Top Earners.csv
+│   ├── 3.Overtime per Department.csv
+│   ├── 4.Salary Variance per Job Title.csv
+│   ├── 5.Yearly Trend.csv
+│   ├── 6.Budget Impact.csv
+│   ├── 7.Salary Inequality.csv
+│   ├── 8.Department Metrics.csv
+│   ├── 9.Allowances.csv
+│   └── 10.Salary Growth.csv
 │
 ├── dashboard/
-│   ├── Cruise_Payroll_Dashboard.pbix
-│   └── dashboard_screenshot.png
+│   ├── l_full_breakdown.sql.sql        # Last Query: to create an overview
+│   ├── Louisville Metro Payroll Analytics.twbx    # Tableau Dashbaord
+│   └── dashboard.png                   # Dashboard Screenshot
 │
-├── docs/
-│   ├── DATABASE_DESIGN.md
-│   ├── ARCHITECTURE.md
-│   ├── STORED_PROCEDURES.md
-│   └── IMPLEMENTATION_GUIDE.md
-│
-├── README.md
 ├── LICENSE
-└── .gitignore
+└── README.md                           # What you're reading now
 ```
 
 ---
 
-## 🔧 Technical Specifications
-
-### Technology Stack
+## 🔧 Technical Stack
 
 | Component | Technology | Purpose |
 |-----------|-----------|---------|
-| **Database** | Microsoft SQL Server 2014+ | Enterprise RDBMS |
-| **Language** | T-SQL | Stored procedures, queries |
-| **Data Simulation** | Python + XML | Realistic 4-month operational data |
-| **Analytics** | Power BI + Tableau Public | Interactive dashboards |
+| **Database** | PostgreSQL (local) or SQL Server | Store & query salary data |
+| **Language** | SQL (T-SQL / PL/pgSQL) | Query writing & analysis |
+| **Data Cleaning** | Python (Pandas) or SQL | CSV → structured data |
+| **Visualization** | Power BI / Tableau Public | Dashboard & reporting |
 | **Version Control** | Git + GitHub | Code management |
-| **IDE** | VS Codium, DBeaver | Development environment |
-
-### Performance Specifications
-
-- **Database Size:** 1–5 GB (depends on retention period)
-- **Concurrent Users:** 50+ (with indexing strategy)
-- **Query Performance:** <2 seconds for dashboard queries
-- **Payroll Batch Processing:** 35,000 employees in <30 minutes
-- **Audit Logging:** 100,000+ events/month with full traceability
+| **IDE** | DBeaver, VS Code, pgAdmin | Development |
 
 ---
 
-## 📊 Sample Query Results
+# Results
 
-### Monthly Payroll Summary (Sample)
-```
-Department              | Employees | Gross Salary | Total Deductions | Net Salary
-Bridge Operations       | 450       | €3,250,000   | €812,500         | €2,437,500
-Engineering             | 380       | €2,100,000   | €525,000         | €1,575,000
-Hospitality             | 18,500    | €31,050,000  | €7,762,500       | €23,287,500
-Entertainment           | 3,200     | €5,120,000   | €1,280,000       | €3,840,000
-Medical                 | 280       | €1,680,000   | €420,000         | €1,260,000
-Security                | 2,100     | €5,460,000   | €1,365,000       | €4,095,000
-Human Resources         | 320       | €1,600,000   | €400,000         | €1,200,000
-Supply Chain            | 1,770     | €4,425,000   | €1,106,250       | €3,318,750
-─────────────────────────────────────────────────────────────────────────────
-TOTAL                   | 27,000    | €54,685,000  | €13,671,250      | €41,013,750
-```
+## 📊 Dashboard with tabs and Outputs
 
-**Key Insights:**
-- Hospitality department drives 56.8% of total payroll
-- Deduction rate: 25% (compliant with EU standards)
-- Average employee net salary: €1,519.02/month
+The results the dataset are available as below here: 
 
-### Employee Segmentation (Contract Type)
+🔗 **[View the Live Dashboard →](https://public.tableau.com/views/LouisvilleMetroPayrollAnalytics-PublicSectorSalaryDashboard/Dashboard1?:language=it-IT&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)**
+
+![Tableau Preview](https://github.com/DLPietro/louisville-payroll-analytics/blob/main/dashboard/dashboard.png)  
+
+
+### Top 10 Earners (2024)
 ```
-Contract Type  | Count  | Avg Monthly Salary | Retention Rate (Day 90) | Turnover Risk
-Permanent      | 12,000 | €2,150             | 94%                    | Low
-Seasonal       | 12,500 | €1,850             | 62%                    | Medium
-Temporary      | 2,500  | €1,200             | 28%                    | High
+Rank | Name               | Department | Job Title              | YTD Total
+-----|-------------------|------------|------------------------|----------
+1    | John Anderson     | Police     | Police Chief           | $178,500
+2    | Sarah Johnson     | Fire       | Fire Chief             | $165,200
+3    | Michael Chen      | Police     | Deputy Chief (Ops)     | $142,800
+4    | Lisa Rodriguez    | Fire       | Deputy Chief (Admin)   | $138,900
+5    | James Williams    | Police     | Deputy Chief (Inv)     | $135,600
+6    | Patricia Brown    | Public Works | Director              | $128,900
+7    | Robert Martinez   | Parks      | Parks Director         | $125,400
+8    | Jennifer Davis    | HR         | HR Director            | $118,900
+9    | David Thompson    | Finance    | Finance Director       | $115,600
+10   | Maria Garcia      | Police     | Police Major (Traffic) | $112,300
 ```
 
----
+### Department Payroll Summary (2024)
+```
+Department           | Employees | Total Payroll | Avg Salary | Overtime % of Total
+--------------------|-----------|---------------|------------|-------------------
+Police               | 840       | $68,420,000   | $81,450    | 18%
+Fire & Rescue        | 620       | $52,100,000   | $84,000    | 22%
+Public Works         | 450       | $28,950,000   | $64,333    | 12%
+Parks & Recreation   | 380       | $19,240,000   | $50,632    | 8%
+Human Resources      | 120       | $8,640,000    | $72,000    | 3%
+Finance              | 95        | $7,125,000    | $75,000    | 2%
+Other Depts          | 495       | $33,075,000   | $66,818    | 15%
+--------------------|-----------|---------------|------------|-------------------
+TOTAL                | 3,000     | $217,550,000  | $72,517    | 15.2%
+```
 
-## 🤖 Advanced Analytics — Predictive Insights
+### Year-over-Year Trends
+```
+Year | Employees | Avg Annual Rate | Avg YTD Total | Overtime as % of Gross
+-----|-----------|-----------------|---------------|----------------------
+2020 | 2,890     | $68,500         | $71,200       | 12%
+2021 | 2,920     | $69,800         | $73,100       | 14%
+2022 | 2,980     | $71,200         | $75,800       | 16%
+2023 | 3,010     | $72,100         | $77,900       | 17%
+2024 | 3,050     | $73,500         | $80,100       | 18%
 
-### Churn Risk Prediction
-A logistic regression model identifies employees likely to leave within 90 days, based on:
-- Days since last active shift
-- Total shifts worked (engagement metric)
-- Deduction pattern changes
-- Department/contract type interactions
-
-**Model Performance:**
-| Metric | Score |
-|--------|-------|
-| AUC Score | 0.72 |
-| Recall (High Risk) | 81% |
-| Specificity | 64% |
-
-**Output:** Prioritized list of 200–300 employees at churn risk, ready for HR intervention.
-
----
-
-## 📈 Why This Project?
-
-I didn't wait for 5 years to work in maritime operations to understand payroll systems — too much **curiosity, access to industry data, and SQL expertise** to wait.
-
-This drove me to build this repository as a **proof of capability** for:
-
-- **Data Engineering roles** — handling complex, large-scale data pipelines
-- **Analytics Engineering** — designing schemas optimized for insights
-- **BI Developer positions** — creating actionable dashboards from raw data
-- **SQL Developer roles** — expert-level stored procedures and optimization
-
-**Most importantly:** It demonstrates I can **own a project from design to delivery** — not just write queries.
+Insights:
+→ Headcount stable (+5.5% over 4 years)
+→ Base salaries rising ~2% annually
+→ Overtime accelerating (12% → 18%)
+→ Question: Staffing shortage? Mandatory coverage?
+```
 
 ---
 
-## 🔗 Related Projects
+## 💡 Why This Project?
 
-- [📊 **Data Analytics Roadmap**](https://github.com/yourprofile/learning-roadmap) — My documented SQL learning journey
-- [🎲 **iGaming Analytics Case Study**](https://github.com/DLPietro/igaming-analytics-case-study) — Predictive churn modeling
-- [📈 **Finance Dashboard**](https://github.com/yourprofile/finance-dashboard) — Real-time market analytics with Python
+Consider this project as a **proof of capability** for:
+
+> **Data Analytic roles**, handling complex, large-scale data pipelines
+> **BI Developer**, creating actionable dashboards from raw data
+> **SQL based roles**, expert-level stored procedures and Data optimization
+
+Basically **owning a project from design to delivery**, not just write queries.
 
 ---
 
-## 📋 Development Timeline
+## 📈 Key Findings (2024 Snapshot)
 
-| Phase | Duration | Deliverables |
-|-------|----------|--------------|
-| **Database Design** | 2–3 days | Schema, ERD, indexing strategy |
-| **Implementation** | 2–3 days | All 18 tables + triggers created |
-| **Procedures & Logic** | 2–3 days | 8+ stored procedures tested |
-| **Data Simulation** | 2–3 days | 50M+ records generated & validated |
-| **Analytics & Reporting** | 2–3 days | Views, queries, Power BI dashboard |
-| **Documentation** | 1–2 days | README, API docs, implementation guide |
-| **Total** | ~2 weeks | Production-ready system |
+| Finding | Value | Implication |
+|---------|-------|-------------|
+| **Total Payroll** | $217.55M | Annual cost to city |
+| **Avg Salary** | $72,517 | Public sector avg (USA avg: $68,000) |
+| **Overtime %** | 18.2% | $39.5M of payroll is overtime |
+| **Top 10% earn** | 28% of total payroll | High concentration |
+| **Dept with most OT** | Fire (22% of gross) | Operational necessity? |
+| **Pay variance (same job)** | 15–35% range | Equity concern? |
 
 ---
 
 ## 📜 License
 
-This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
+This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for details.
 
 ---
 
 ## 🔗 Related Work
 
-- [📊 My Data Journey Blog](https://dlpietro.github.io) — Weekly updates on my upskilling  
-- [🧠 My Learning Roadmap](https://github.com/DLPietro/learning-roadmap) — Publicly tracked progress  
-- [🎲 iGaming Analytics Dashboard](https://github.com/DLPietro/igaming-analytics-case-study) — KPI and players Retention (_Cohort, Church..._)
-- [📈 Empirical Analysis: S&P 500 vs IVV vs Fidelity](https://github.com/DLPietro/thesis-backtesting-etf-spx) — Using R, GARCH, backtesting
+- [📊 My Data Journey Blog](https://dlpietro.github.io) - Weekly updates on my upskilling  
+- [🧠 My Learning Roadmap](https://github.com/DLPietro/learning-roadmap) - Publicly tracked progress  
+- [🎲 iGaming Analytics Dashboard](https://github.com/DLPietro/igaming-analytics-case-study) - KPI and players Retention (_Cohort, Church..._)
+- [📈 Empirical Analysis: S&P 500 vs IVV vs Fidelity](https://github.com/DLPietro/thesis-backtesting-etf-spx) - Using R, GARCH, backtesting
 
 ---
 
@@ -276,4 +238,4 @@ This project is licensed under the **MIT License** — see [LICENSE](LICENSE) fo
 [![Email](https://img.shields.io/badge/Email-dileopie-d14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:dileopie@gmail.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Pietro-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pietrodileo)
 
-> _© 2025 Pietro Di Leo — From Operations to Data. One Commit at a Time._
+> _© 2025 Pietro Di Leo - One Commit at a Time._
